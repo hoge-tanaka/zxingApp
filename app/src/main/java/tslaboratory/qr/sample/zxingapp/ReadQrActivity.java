@@ -34,27 +34,21 @@ public class ReadQrActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read_qr);
 
-        // QRコードスキャナの設定
-        try {
-            // 端末の横幅を取得しカメラのフォーカスエリアを設定する
-            WindowManager windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
-            Display display = windowManager.getDefaultDisplay();
-            Point size = new Point();
-            display.getSize(size);
-            SettingFocusCamera((int) (size.x * 0.7));
+        // 端末の横幅を取得しカメラのフォーカスエリアを設定する
+        WindowManager windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
+        Display display = windowManager.getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        SettingFocusCamera((int) (size.x * 0.7));
 
-            // QRコードを継続的に読み取る設定
-            barcodeView = findViewById(R.id.zxing_barcode_scanner);
-            Collection<BarcodeFormat> formats = Arrays.asList(BarcodeFormat.QR_CODE, BarcodeFormat.CODE_128);
-            barcodeView.getBarcodeView().setDecoderFactory(new DefaultDecoderFactory(formats));
-            barcodeView.decodeContinuous(callback);
+        // QRコードを継続的に読み取る設定
+        barcodeView = findViewById(R.id.zxing_barcode_scanner);
+        Collection<BarcodeFormat> formats = Arrays.asList(BarcodeFormat.QR_CODE, BarcodeFormat.CODE_128);
+        barcodeView.getBarcodeView().setDecoderFactory(new DefaultDecoderFactory(formats));
+        barcodeView.decodeContinuous(callback);
 
-            // xmlからレーザーの透明度を変更できないのでコードで指定。
-            TransparentQrCodeReaderLaser();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        // xmlからレーザーの透明度を変更できないのでコードで指定。
+        TransparentQrCodeReaderLaser();
     }
 
     // QRコード読み取り
