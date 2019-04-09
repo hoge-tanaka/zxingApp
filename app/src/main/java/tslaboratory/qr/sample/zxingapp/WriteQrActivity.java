@@ -35,7 +35,7 @@ public class WriteQrActivity extends AppCompatActivity {
         BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
         try {
             Bitmap bitmap = barcodeEncoder.encodeBitmap(code, BarcodeFormat.CODE_128, pxFromDp(300), pxFromDp(100), hints);
-            ((ImageView)findViewById(R.id.image_barcode)).setImageBitmap(bitmap);
+            ((ImageView) findViewById(R.id.image_barcode)).setImageBitmap(bitmap);
         } catch (WriterException e) {
             e.printStackTrace();
             return;
@@ -46,7 +46,7 @@ public class WriteQrActivity extends AppCompatActivity {
             // 誤り訂正レベルを設定(QRが多少欠けていても読み取ることができる)
             hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
             Bitmap bitmap = barcodeEncoder.encodeBitmap(code, BarcodeFormat.QR_CODE, pxFromDp(100), pxFromDp(100), hints);
-            ((ImageView)findViewById(R.id.image_qrCode)).setImageBitmap(bitmap);
+            ((ImageView) findViewById(R.id.image_qrCode)).setImageBitmap(bitmap);
         } catch (WriterException e) {
             e.printStackTrace();
             return;
